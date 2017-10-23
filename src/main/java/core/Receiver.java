@@ -1,5 +1,6 @@
 package core;
 import com.rabbitmq.client.*;
+import logic.SingeltonHolder;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -40,6 +41,8 @@ public class Receiver extends Thread{
                     throws IOException {
                 String message = new String(body, "UTF-8");
                 System.out.println(" [x] Received best quote: '" + message + "'");
+                SingeltonHolder.setBestQuote(message);
+
             }
         };
         try {
